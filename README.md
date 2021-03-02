@@ -6,7 +6,7 @@ Interactive CLI tool to upload file(s) to S3 and DynamoDB
 
 1. Install repo
 ```
-git clone https://github.com/bennetthanna/generator-moosic.git
+git clone https://github.com/adrianna157/CLI-DDB-Part-2.git
 ```
 
 2. Install packages
