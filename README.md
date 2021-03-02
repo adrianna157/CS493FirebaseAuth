@@ -33,14 +33,14 @@ yo music
 
 ## Notes
 
-- Files are uploaded to S3 with the following key format `genre/artist/album/song`
-- You will _always_ be prompted for the genre
+- Files are uploaded to S3 bucket with the following key format `genre/artist/album/song`
+- User will be prompted for the genre **at all times**
 - All resources must have an associated genre, artist, album, and song title
-	- If they are not provided through the file path, they will be prompted for
-- You will be prompted to change the name of the resource you are uploading
-	- When uploading an artist, it will prompt you to change the name of the artist
-	- When uploading an album, it will prompt you to change the name of the album
-	- When uploading an song, it will prompt you to change the name of the song
+	- If users do not provide the file path, they will not move forward until they do
+- User will be prompted to change the name of the resource you are uploading
+	- When uploading an artist, it will prompt the user to change the name of the artist
+	- When uploading an album, it will prompt the user to change the name of the album
+	- When uploading an song, it will prompt the user to change the name of the song
 - When you upload a directory (an artist or an album) you can change the root name but everything else will stay the same
 
 ```
