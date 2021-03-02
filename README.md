@@ -1,4 +1,4 @@
-# Moosic Yeoman Generator
+# music Yeoman Generator
 
 Interactive CLI tool to upload file(s) to S3 and DynamoDB
 
@@ -19,7 +19,7 @@ npm install
 npm link
 ```
 
-4. Follow the prompts and upload that moosic!
+4. Follow the prompts and upload that music!
 ```
 yo music
 ```
