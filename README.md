@@ -1,5 +1,6 @@
 # music Yeoman Generator
 
+
 Interactive CLI tool to upload file(s) to S3 and DynamoDB
 
 ## Installation
