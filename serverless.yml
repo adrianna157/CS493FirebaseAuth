@@ -158,37 +158,37 @@ resources:
                       - - arn:aws:s3:::music-storage-cs493192711-dev
                         - "Ref": "ServerlessDeploymentBucket"
 
-    # MusicTable:
-    #   Type: AWS::DynamoDB::Table
-    #   Properties:
-    #     TableName: "music"
+    MusicTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: "music"
 
-        # AttributeDefinitions:
-        #   - AttributeName: "genre"
-        #     AttributeType: S
-        #   - AttributeName: "artist_album_song"
-        #     AttributeType: S
-        #   - AttributeName: "artist"
-        #     AttributeType: S
+        AttributeDefinitions:
+          - AttributeName: "genre"
+            AttributeType: S
+          - AttributeName: "artist_album_song"
+            AttributeType: S
+          - AttributeName: "artist"
+            AttributeType: S
 
-        # KeySchema:
-        #   - AttributeName: "genre"
-        #     KeyType: "HASH"
-        #   - AttributeName: "artist_album_song"
-        #     KeyType: "RANGE"
-        # ProvisionedThroughput:
-        #   ReadCapacityUnits: 1
-        #   WriteCapacityUnits: 1
-        # GlobalSecondaryIndexes:
-        #   - IndexName: "artist_gsi"
-        #     ProvisionedThroughput:
-        #       ReadCapacityUnits: 1
-        #       WriteCapacityUnits: 1
-        #     KeySchema:
-        #       - AttributeName: "artist"
-        #         KeyType: "HASH"
-        #     Projection:
-        #       ProjectionType: ALL
+        KeySchema:
+          - AttributeName: "genre"
+            KeyType: "HASH"
+          - AttributeName: "artist_album_song"
+            KeyType: "RANGE"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        GlobalSecondaryIndexes:
+          - IndexName: "artist_gsi"
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
+            KeySchema:
+              - AttributeName: "artist"
+                KeyType: "HASH"
+            Projection:
+              ProjectionType: ALL
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
