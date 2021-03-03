@@ -73,6 +73,7 @@ functions:
       - http:
           path: /{proxy+}
           method: get
+    role: contractors
           
           
 
@@ -120,10 +121,15 @@ functions:
 
 resources:
   Resources:
-    contractor:
+    contractors:
       Type: AWS::IAM::Role
       Properties:
         RoleName: contractors
+        ManagedPolicyArns:
+          - "arn:aws:iam::aws:policy/AWSCloudFormationReadOnlyAccess"
+          - "arn:aws:iam::aws:policy/IAMReadOnlyAccess"
+          - "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+          - "arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess"
         AssumeRolePolicyDocument:
           Version: "2012-10-17"
           Statement:
@@ -157,6 +163,10 @@ resources:
                       - ""
                       - - arn:aws:s3:::music-storage-cs493192711-dev
                         - "Ref": "ServerlessDeploymentBucket"
+           
+
+                        
+                
 
     MusicTable:
       Type: AWS::DynamoDB::Table
