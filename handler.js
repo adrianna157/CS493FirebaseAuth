@@ -4,12 +4,13 @@ const AWS = require("aws-sdk");
 const _ = require("lodash");
 const MUSIC_TABLE = "music";
 const bodyParser = require("body-parser");
-const BUCKET = "music-storage-cs493192711-dev";
+const BUCKET = "process.env.BUCKET";
 const USER_TABLE = "users";
 const SQS_QUEUE_URL =
   "https://sqs.us-east-1.amazonaws.com/466469553065/reporting";
 
 const app = express();
+
 
 function queryDynamoDb(params) {
   const documentClient = new AWS.DynamoDB.DocumentClient({
@@ -130,7 +131,6 @@ app.get(
   }
 );
 
-
 app.get(
   "/albums/for/artist",
   [
@@ -212,7 +212,7 @@ app.get(
 app.get(
   "/song",
   [
-    query("song", "Missing song query parameter").exists({
+    query("song", "Missing parameter for song query").exists({
       checkFalsy: true,
     }),
   ],
@@ -286,4 +286,4 @@ app.post("/play", (req, res) => {
     });
 });
 
-module.exports.api = handler(app);
+app.listen(3000);

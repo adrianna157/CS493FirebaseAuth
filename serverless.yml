@@ -67,6 +67,15 @@ package:
     - "node_modules/@babel/**"
 
 functions:
+  music-api:
+    handler: /handler.musicapi
+    events:
+      - http:
+          path: /{proxy+}
+          method: get
+          
+          
+
   addinglist:
     handler: backend/AddAudio.addinglist
     events:
@@ -111,11 +120,10 @@ functions:
 
 resources:
   Resources:
-    myCustRole1:
+    contractor:
       Type: AWS::IAM::Role
       Properties:
-        Path: /song/
-        RoleName: MyCustRole1
+        RoleName: contractors
         AssumeRolePolicyDocument:
           Version: "2012-10-17"
           Statement:
