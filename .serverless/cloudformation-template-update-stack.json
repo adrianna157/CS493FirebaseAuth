@@ -255,7 +255,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1614761332449-2021-03-03T08:48:52.449Z/music-api.zip"
+          "S3Key": "serverless/music-api/dev/1614845506999-2021-03-04T08:11:46.999Z/music-api.zip"
         },
         "Handler": "s_music_api.handler",
         "Runtime": "nodejs12.x",
@@ -286,7 +286,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1614761332449-2021-03-03T08:48:52.449Z/music-api.zip"
+          "S3Key": "serverless/music-api/dev/1614845506999-2021-03-04T08:11:46.999Z/music-api.zip"
         },
         "Handler": "s_addinglist.handler",
         "Runtime": "nodejs12.x",
@@ -317,7 +317,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1614761332449-2021-03-03T08:48:52.449Z/music-api.zip"
+          "S3Key": "serverless/music-api/dev/1614845506999-2021-03-04T08:11:46.999Z/music-api.zip"
         },
         "Handler": "s_getsonglist.handler",
         "Runtime": "nodejs12.x",
@@ -349,7 +349,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1614761332449-2021-03-03T08:48:52.449Z/music-api.zip"
+          "S3Key": "serverless/music-api/dev/1614845506999-2021-03-04T08:11:46.999Z/music-api.zip"
         },
         "Handler": "s_getsongName.handler",
         "Runtime": "nodejs12.x",
@@ -381,7 +381,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1614761332449-2021-03-03T08:48:52.449Z/music-api.zip"
+          "S3Key": "serverless/music-api/dev/1614845506999-2021-03-04T08:11:46.999Z/music-api.zip"
         },
         "Handler": "s_newplaylist.handler",
         "Runtime": "nodejs12.x",
@@ -406,54 +406,54 @@
         "NewplaylistLogGroup"
       ]
     },
-    "MusicDashapiLambdaVersionjaVBAzSR01FBJotZfG3kRat4AfAvmSWwvYge9sAEk": {
+    "MusicDashapiLambdaVersionN0J7QmILlxB0EYQIPYzmBYmCXQEczuDqAzERzebEc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MusicDashapiLambdaFunction"
         },
-        "CodeSha256": "IumqvylbRsfRbWlSEdNf/f0PWfq9kOzhVHMca2OhBvY="
+        "CodeSha256": "In205jO3xx8PT8HqB4vLEh0JS2gaIwFEKuHHzQEkHkY="
       }
     },
-    "AddinglistLambdaVersionSQ9KXBgpsieaVHPoq8inYJ6mxwpkDTAHVuMDkySNVY": {
+    "AddinglistLambdaVersionjlFNG8zlKmNGqOs8SvgbWB6s1wO7ztQEeUTi9xosWg": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AddinglistLambdaFunction"
         },
-        "CodeSha256": "IumqvylbRsfRbWlSEdNf/f0PWfq9kOzhVHMca2OhBvY="
+        "CodeSha256": "In205jO3xx8PT8HqB4vLEh0JS2gaIwFEKuHHzQEkHkY="
       }
     },
-    "GetsonglistLambdaVersiona4hojTyYsKWG4T5EHptX9SDIxY8sQM4fWC7SFzhKlU": {
+    "GetsonglistLambdaVersionNZz2r7BaPIzsWPWVVbQaRJxKKYXVWo2YcKVYi9XsOc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetsonglistLambdaFunction"
         },
-        "CodeSha256": "IumqvylbRsfRbWlSEdNf/f0PWfq9kOzhVHMca2OhBvY="
+        "CodeSha256": "In205jO3xx8PT8HqB4vLEh0JS2gaIwFEKuHHzQEkHkY="
       }
     },
-    "GetsongNameLambdaVersionPdKCg7VsKZCxDn5B16smIKQyGY9fqGOxMf4DQl5ISBo": {
+    "GetsongNameLambdaVersion1z2eowwyJSnrQ95TnzZjt0mBGDAoDrUjAM9Jp65F4": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetsongNameLambdaFunction"
         },
-        "CodeSha256": "IumqvylbRsfRbWlSEdNf/f0PWfq9kOzhVHMca2OhBvY="
+        "CodeSha256": "In205jO3xx8PT8HqB4vLEh0JS2gaIwFEKuHHzQEkHkY="
       }
     },
-    "NewplaylistLambdaVersionHFtTqKP24wWSzTCYIAk1VYDQ73kfRMKeGIjAqVT4": {
+    "NewplaylistLambdaVersionxLGZEBUXda4A54oEsuDJPLZs1NiKuTJExOp6J54sI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "NewplaylistLambdaFunction"
         },
-        "CodeSha256": "IumqvylbRsfRbWlSEdNf/f0PWfq9kOzhVHMca2OhBvY="
+        "CodeSha256": "In205jO3xx8PT8HqB4vLEh0JS2gaIwFEKuHHzQEkHkY="
       }
     },
     "S3BucketMusicstoragecs493192711dev": {
@@ -885,7 +885,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1614761293346": {
+    "ApiGatewayDeployment1614845467233": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1160,7 +1160,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1614761332449-2021-03-03T08:48:52.449Z/custom-resources.zip"
+          "S3Key": "serverless/music-api/dev/1614845506999-2021-03-04T08:11:46.999Z/custom-resources.zip"
         },
         "FunctionName": "music-api-dev-custom-resource-apigw-cw-role",
         "Handler": "apiGatewayCloudWatchRole/handler.handler",
@@ -1386,31 +1386,31 @@
     "MusicDashapiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MusicDashapiLambdaVersionjaVBAzSR01FBJotZfG3kRat4AfAvmSWwvYge9sAEk"
+        "Ref": "MusicDashapiLambdaVersionN0J7QmILlxB0EYQIPYzmBYmCXQEczuDqAzERzebEc"
       }
     },
     "AddinglistLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AddinglistLambdaVersionSQ9KXBgpsieaVHPoq8inYJ6mxwpkDTAHVuMDkySNVY"
+        "Ref": "AddinglistLambdaVersionjlFNG8zlKmNGqOs8SvgbWB6s1wO7ztQEeUTi9xosWg"
       }
     },
     "GetsonglistLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetsonglistLambdaVersiona4hojTyYsKWG4T5EHptX9SDIxY8sQM4fWC7SFzhKlU"
+        "Ref": "GetsonglistLambdaVersionNZz2r7BaPIzsWPWVVbQaRJxKKYXVWo2YcKVYi9XsOc"
       }
     },
     "GetsongNameLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetsongNameLambdaVersionPdKCg7VsKZCxDn5B16smIKQyGY9fqGOxMf4DQl5ISBo"
+        "Ref": "GetsongNameLambdaVersion1z2eowwyJSnrQ95TnzZjt0mBGDAoDrUjAM9Jp65F4"
       }
     },
     "NewplaylistLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "NewplaylistLambdaVersionHFtTqKP24wWSzTCYIAk1VYDQ73kfRMKeGIjAqVT4"
+        "Ref": "NewplaylistLambdaVersionxLGZEBUXda4A54oEsuDJPLZs1NiKuTJExOp6J54sI"
       }
     },
     "ServiceEndpoint": {

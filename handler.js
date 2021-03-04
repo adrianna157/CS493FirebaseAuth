@@ -4,7 +4,7 @@ const AWS = require("aws-sdk");
 const _ = require("lodash");
 const MUSIC_TABLE = "music";
 const bodyParser = require("body-parser");
-const BUCKET = "process.env.BUCKET";
+const BUCKET = "music-storage-cs493192711-dev";
 const USER_TABLE = "users";
 const SQS_QUEUE_URL =
   "https://sqs.us-east-1.amazonaws.com/466469553065/reporting";
@@ -93,15 +93,21 @@ app.get("/genres", function (req, res) {
 });
 
 app.get("/artists/for/genre", function (req, res) {
+  const genre = req.query.genre;
+  console.log(genre);
+
   const params = {
     TableName: MUSIC_TABLE,
-    IndexName: "artist_gsi",
+    KeyConditionExpression: "genre = :genre",
+    ExpressionAttributeValues: {
+      ":genre": genre,
+    },
   };
 
-  scanDynamoDb(params)
+  queryDynamoDb(params)
     .then((items) => {
       if (items.Count < 1) {
-        return res.status(404).send("No genres found");
+        return res.status(404).send(`No artists found for genre ${genre}`);
       }
       return res
         .status(200)
@@ -113,15 +119,21 @@ app.get("/artists/for/genre", function (req, res) {
 });
 
 app.get("/albums/for/artist", function (req, res) {
+  const artist = req.query.artist;
+
   const params = {
     TableName: MUSIC_TABLE,
     IndexName: "artist_gsi",
+    KeyConditionExpression: "artist = :artist",
+    ExpressionAttributeValues: {
+      ":artist": artist,
+    },
   };
 
-  scanDynamoDb(params)
+  queryDynamoDb(params)
     .then((items) => {
       if (items.Count < 1) {
-        return res.status(404).send("No genres found");
+        return res.status(404).send(`No albums found for artist ${artist}`);
       }
       return res
         .status(200)
@@ -133,15 +145,21 @@ app.get("/albums/for/artist", function (req, res) {
 });
 
 app.get("/songs/for/album", function (req, res) {
+  const album = req.query.album;
+
   const params = {
     TableName: MUSIC_TABLE,
-    IndexName: "artist_gsi",
+    IndexName: "album_gsi",
+    KeyConditionExpression: "album = :album",
+    ExpressionAttributeValues: {
+      ":album": album,
+    },
   };
 
-  scanDynamoDb(params)
+  queryDynamoDb(params)
     .then((items) => {
       if (items.Count < 1) {
-        return res.status(404).send("No genres found");
+        return res.status(404).send(`No songs found for album ${album}`);
       }
       return res
         .status(200)
@@ -157,7 +175,8 @@ app.get("/song", function (req, res) {
 
   const params = {
     TableName: MUSIC_TABLE,
-    IndexName: "artist_gsi",
+    FilterExpression: "song = :song",
+    ExpressionAttributeValues: { ":song": song },
   };
 
   scanDynamoDb(params)
@@ -174,6 +193,7 @@ app.get("/song", function (req, res) {
       return res.status(500).send(err);
     });
 });
+
 
 // app.post("/save-user", (req, res) => {
 //   const params = {
