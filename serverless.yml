@@ -81,18 +81,11 @@ functions:
             type: request
             identitySource: method.request.header.authorization
 
-            
-    
-
   logPost:
     handler: /logHandler.logPost
     events:
       - sqs: arn:aws:sqs:us-east-1:466469553065:reporting
-  
-  
-  
-          
-          
+
   addinglist:
     handler: backend/AddAudio.addinglist
     events:
@@ -179,10 +172,6 @@ resources:
                       - ""
                       - - arn:aws:s3:::music-storage-cs493192711-dev
                         - "Ref": "ServerlessDeploymentBucket"
-           
-
-                        
-                
 
     MusicTable:
       Type: AWS::DynamoDB::Table

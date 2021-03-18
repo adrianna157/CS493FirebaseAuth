@@ -290,7 +290,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/music-api.zip"
+          "S3Key": "serverless/music-api/dev/1616091716814-2021-03-18T18:21:56.814Z/music-api.zip"
         },
         "Handler": "s_auth.handler",
         "Runtime": "nodejs12.x",
@@ -320,7 +320,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/music-api.zip"
+          "S3Key": "serverless/music-api/dev/1616091716814-2021-03-18T18:21:56.814Z/music-api.zip"
         },
         "Handler": "s_music_api.handler",
         "Runtime": "nodejs12.x",
@@ -350,7 +350,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/music-api.zip"
+          "S3Key": "serverless/music-api/dev/1616091716814-2021-03-18T18:21:56.814Z/music-api.zip"
         },
         "Handler": "s_logPost.handler",
         "Runtime": "nodejs12.x",
@@ -380,7 +380,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/music-api.zip"
+          "S3Key": "serverless/music-api/dev/1616091716814-2021-03-18T18:21:56.814Z/music-api.zip"
         },
         "Handler": "s_addinglist.handler",
         "Runtime": "nodejs12.x",
@@ -411,7 +411,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/music-api.zip"
+          "S3Key": "serverless/music-api/dev/1616091716814-2021-03-18T18:21:56.814Z/music-api.zip"
         },
         "Handler": "s_getsonglist.handler",
         "Runtime": "nodejs12.x",
@@ -443,7 +443,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/music-api.zip"
+          "S3Key": "serverless/music-api/dev/1616091716814-2021-03-18T18:21:56.814Z/music-api.zip"
         },
         "Handler": "s_getsongName.handler",
         "Runtime": "nodejs12.x",
@@ -475,7 +475,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/music-api.zip"
+          "S3Key": "serverless/music-api/dev/1616091716814-2021-03-18T18:21:56.814Z/music-api.zip"
         },
         "Handler": "s_newplaylist.handler",
         "Runtime": "nodejs12.x",
@@ -500,74 +500,74 @@
         "NewplaylistLogGroup"
       ]
     },
-    "AuthLambdaVersionCobwUuc47nCRDHfFATQqWTkit7s9mp4ed9KKYJQNI": {
+    "AuthLambdaVersionlof93BvvgL2jm1COh2xabkt9yJsXgutKvsBZdQaik": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AuthLambdaFunction"
         },
-        "CodeSha256": "Nx6h2kTn78wk3e88duB5OjuhJFhGd7/+xFN5VDMgHo0="
+        "CodeSha256": "acARCCSd7yLDRnJPSg8zPF6KIvfuUxyFREWKmMEX2oM="
       }
     },
-    "MusicDashapiLambdaVersion4iYOn9jx5nCMoUCvyTtLu6NPXVd9OdUbRV5GFQpIA": {
+    "MusicDashapiLambdaVersionZy7QZbhUxduFneeALujxjygT8J2Pqae0ZcaabLRdg0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MusicDashapiLambdaFunction"
         },
-        "CodeSha256": "Nx6h2kTn78wk3e88duB5OjuhJFhGd7/+xFN5VDMgHo0="
+        "CodeSha256": "acARCCSd7yLDRnJPSg8zPF6KIvfuUxyFREWKmMEX2oM="
       }
     },
-    "LogPostLambdaVersionXFaZGYZqvzj0nCs0xsmvKG46irhreZVYs27vMewBkw": {
+    "LogPostLambdaVersionnQoAMdZuAY5uyFThxa2wpTXXWZ5ePxJN0p5sxdzQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "LogPostLambdaFunction"
         },
-        "CodeSha256": "Nx6h2kTn78wk3e88duB5OjuhJFhGd7/+xFN5VDMgHo0="
+        "CodeSha256": "acARCCSd7yLDRnJPSg8zPF6KIvfuUxyFREWKmMEX2oM="
       }
     },
-    "AddinglistLambdaVersionu4fCq57gSU7vuOuQ84yYfD7bfT8jY8QaVCgK97X9kk": {
+    "AddinglistLambdaVersionZJ1BpbC4WpWYO8XysMi4RSejBgGLOfP3BJQR4x4Uk": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AddinglistLambdaFunction"
         },
-        "CodeSha256": "Nx6h2kTn78wk3e88duB5OjuhJFhGd7/+xFN5VDMgHo0="
+        "CodeSha256": "acARCCSd7yLDRnJPSg8zPF6KIvfuUxyFREWKmMEX2oM="
       }
     },
-    "GetsonglistLambdaVersion2DHSuwHLaOO0xO9Pvsy9jUnKCltenEuKwy0gU8bs": {
+    "GetsonglistLambdaVersionC0nl77fz3OWPcExC4LRYJRVbekbHJY2O3en2FsUgf8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetsonglistLambdaFunction"
         },
-        "CodeSha256": "Nx6h2kTn78wk3e88duB5OjuhJFhGd7/+xFN5VDMgHo0="
+        "CodeSha256": "acARCCSd7yLDRnJPSg8zPF6KIvfuUxyFREWKmMEX2oM="
       }
     },
-    "GetsongNameLambdaVersionsP28HUxRvOLO7u4x7hD8VlfIHjop0Z7jrRc3QJ4VdI": {
+    "GetsongNameLambdaVersionTHAmNZN1WZRKQTOk3kxYV9AZ0J837PhUI0s0fHUgQ0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetsongNameLambdaFunction"
         },
-        "CodeSha256": "Nx6h2kTn78wk3e88duB5OjuhJFhGd7/+xFN5VDMgHo0="
+        "CodeSha256": "acARCCSd7yLDRnJPSg8zPF6KIvfuUxyFREWKmMEX2oM="
       }
     },
-    "NewplaylistLambdaVersionowKqKaoHQNK5r6xlw5ROSrHThsg5qxnc4rbJjR8mhs": {
+    "NewplaylistLambdaVersionfQF5tVBXRyJXU7ecz4q5K2Zib1x11rApD7hTRtQ6dM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "NewplaylistLambdaFunction"
         },
-        "CodeSha256": "Nx6h2kTn78wk3e88duB5OjuhJFhGd7/+xFN5VDMgHo0="
+        "CodeSha256": "acARCCSd7yLDRnJPSg8zPF6KIvfuUxyFREWKmMEX2oM="
       }
     },
     "S3BucketMusicstoragecs493192711dev": {
@@ -687,6 +687,51 @@
           ]
         },
         "PathPart": "newplaylist",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodProxyVarOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,GET,HEAD,PATCH,POST,PUT'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceProxyVar"
+        },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -1035,10 +1080,10 @@
             ]
           ]
         },
-        "Type": "TOKEN"
+        "Type": "REQUEST"
       }
     },
-    "ApiGatewayDeployment1616055797172": {
+    "ApiGatewayDeployment1616091681630": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1047,6 +1092,7 @@
         "StageName": "dev"
       },
       "DependsOn": [
+        "ApiGatewayMethodProxyVarOptions",
         "ApiGatewayMethodAudioOptions",
         "ApiGatewayMethodSongnameOptions",
         "ApiGatewayMethodNewplaylistOptions",
@@ -1350,7 +1396,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/custom-resources.zip"
+          "S3Key": "serverless/music-api/dev/1616091716814-2021-03-18T18:21:56.814Z/custom-resources.zip"
         },
         "FunctionName": "music-api-dev-custom-resource-apigw-cw-role",
         "Handler": "apiGatewayCloudWatchRole/handler.handler",
@@ -1613,43 +1659,43 @@
     "AuthLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AuthLambdaVersionCobwUuc47nCRDHfFATQqWTkit7s9mp4ed9KKYJQNI"
+        "Ref": "AuthLambdaVersionlof93BvvgL2jm1COh2xabkt9yJsXgutKvsBZdQaik"
       }
     },
     "MusicDashapiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MusicDashapiLambdaVersion4iYOn9jx5nCMoUCvyTtLu6NPXVd9OdUbRV5GFQpIA"
+        "Ref": "MusicDashapiLambdaVersionZy7QZbhUxduFneeALujxjygT8J2Pqae0ZcaabLRdg0"
       }
     },
     "LogPostLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "LogPostLambdaVersionXFaZGYZqvzj0nCs0xsmvKG46irhreZVYs27vMewBkw"
+        "Ref": "LogPostLambdaVersionnQoAMdZuAY5uyFThxa2wpTXXWZ5ePxJN0p5sxdzQ"
       }
     },
     "AddinglistLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AddinglistLambdaVersionu4fCq57gSU7vuOuQ84yYfD7bfT8jY8QaVCgK97X9kk"
+        "Ref": "AddinglistLambdaVersionZJ1BpbC4WpWYO8XysMi4RSejBgGLOfP3BJQR4x4Uk"
       }
     },
     "GetsonglistLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetsonglistLambdaVersion2DHSuwHLaOO0xO9Pvsy9jUnKCltenEuKwy0gU8bs"
+        "Ref": "GetsonglistLambdaVersionC0nl77fz3OWPcExC4LRYJRVbekbHJY2O3en2FsUgf8"
       }
     },
     "GetsongNameLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetsongNameLambdaVersionsP28HUxRvOLO7u4x7hD8VlfIHjop0Z7jrRc3QJ4VdI"
+        "Ref": "GetsongNameLambdaVersionTHAmNZN1WZRKQTOk3kxYV9AZ0J837PhUI0s0fHUgQ0"
       }
     },
     "NewplaylistLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "NewplaylistLambdaVersionowKqKaoHQNK5r6xlw5ROSrHThsg5qxnc4rbJjR8mhs"
+        "Ref": "NewplaylistLambdaVersionfQF5tVBXRyJXU7ecz4q5K2Zib1x11rApD7hTRtQ6dM"
       }
     },
     "ServiceEndpoint": {
