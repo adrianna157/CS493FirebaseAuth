@@ -67,16 +67,32 @@ package:
     - "node_modules/@babel/**"
 
 functions:
+  auth:
+    handler: /auth.handler
   music-api:
     handler: /handler.musicapi
     events:
       - http:
+          method: ANY
           path: /{proxy+}
-          method: get
-    role: contractors
-          
-          
+          cors: true
+          authorizer:
+            name: auth
+            type: request
+            identitySource: method.request.header.authorization
 
+            
+    
+
+  logPost:
+    handler: /logHandler.logPost
+    events:
+      - sqs: arn:aws:sqs:us-east-1:466469553065:reporting
+  
+  
+  
+          
+          
   addinglist:
     handler: backend/AddAudio.addinglist
     events:

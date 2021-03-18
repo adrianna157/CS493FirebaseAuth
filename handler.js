@@ -5,7 +5,6 @@ const _ = require("lodash");
 const MUSIC_TABLE = "music";
 const bodyParser = require("body-parser");
 const BUCKET = "music-storage-cs493192711-dev";
-const USER_TABLE = "users";
 const SQS_QUEUE_URL =
   "https://sqs.us-east-1.amazonaws.com/466469553065/reporting";
 
@@ -195,44 +194,28 @@ app.get("/song", function (req, res) {
 });
 
 
-// app.post("/save-user", (req, res) => {
-//   const params = {
-//     Item: {
-//       name: req.body.name,
-//       email: req.body.email,
-//       id: req.body.id,
-//     },
-//     TableName: USER_TABLE,
-//   };
 
-//   upsertDynamoDb(params)
-//     .then((dynamoRes) => {
-//       return res.status(200).send(dynamoRes);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       return res.status(500).send(err);
-//     });
-// });
+app.post("/play", (req, res) => {
+  const auth = req.get("authorization");
+  const params = {
+    MessageBody: JSON.stringify({
+      auth,
+      artist: req.body.artist,
+      album: req.body.album,
+      song: req.body.song,
+      
+    }),
+    QueueUrl: SQS_QUEUE_URL,
+  };
 
-// app.post("/play", (req, res) => {
-//   const params = {
-//     MessageBody: JSON.stringify({
-//       artist: req.body.artist,
-//       album: req.body.album,
-//       song: req.body.song,
-//     }),
-//     QueueUrl: SQS_QUEUE_URL,
-//   };
-
-//   sendSqsMessage(params)
-//     .then((sqsRes) => {
-//       return res.status(200).send(sqsRes.MessageId);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       return res.status(500).send(err);
-//     });
-// });
+  sendSqsMessage(params)
+    .then((sqsRes) => {
+      return res.status(200).send(sqsRes.MessageId);
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).send(err);
+    });
+});
 
 module.exports.musicapi = handler(app);

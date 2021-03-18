@@ -19,7 +19,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #FFD2DA;
 }
 
 @keyframes App-logo-spin {
@@ -57,7 +57,7 @@ button:hover {
   margin-top: 20px;
 }
 
-#moosic-table {
+#music-tbl {
   width: 50%;
   table-layout: fixed;
   margin: 0 auto;
@@ -75,6 +75,6 @@ ol {
 }
 
 #breadcrumb-link {
-  color: #17a2b8;
+  color: #FFD2DA;
   text-decoration: none;
 }

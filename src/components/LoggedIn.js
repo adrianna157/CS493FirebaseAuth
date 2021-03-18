@@ -12,7 +12,7 @@ const ARTISTS = "artists";
 const ALBUMS = "albums";
 const SONGS = "songs";
 const API_HOST =
-  "https://3przfr4na4.execute-api.us-east-1.amazonaws.com/dev/song";
+  " https://935b4mrcb1.execute-api.us-east-1.amazonaws.com/dev";
 
 class LoggedIn extends Component {
   constructor(props) {
@@ -58,11 +58,7 @@ class LoggedIn extends Component {
       }),
     };
 
-    fetch(`${API_HOST}/save-user`, params)
-      .then((res) => res.json())
-      .catch((err) => {
-        alert(err);
-      });
+  
 
     fetch(`${API_HOST}/genres`)
       .then((res) => {
@@ -217,7 +213,7 @@ class LoggedIn extends Component {
 
     return (
       <Table
-        id="moosic-table"
+        id="music-tbl"
         bsPrefix="table table-dark table-striped table-bordered table-hover"
       >
         <thead>
@@ -251,7 +247,7 @@ class LoggedIn extends Component {
 
     return (
       <Table
-        id="moosic-table"
+        id="music-tbl"
         bsPrefix="table table-dark table-striped table-bordered table-hover"
       >
         <thead>
@@ -285,7 +281,7 @@ class LoggedIn extends Component {
 
     return (
       <Table
-        id="moosic-table"
+        id="music-tbl"
         bsPrefix="table table-dark table-striped table-bordered table-hover"
       >
         <thead>
@@ -319,13 +315,13 @@ class LoggedIn extends Component {
 
     return (
       <Table
-        id="moosic-table"
+        id="music-tbl"
         bsPrefix="table table-dark table-striped table-bordered table-hover"
       >
         <thead>
           <tr>
             <th>Songs</th>
-            <th>Play That Funky Moosic</th>
+            <th>Play Songs</th>
           </tr>
         </thead>
         <tbody>
@@ -398,7 +394,7 @@ class LoggedIn extends Component {
     const renderBreadcrumbs = this.renderBreadcrumbs;
     return (
       <Table
-        id="moosic-table"
+        id="music-tbl"
         bsPrefix="table table-dark table-striped table-bordered table-hover"
       >
         <thead>

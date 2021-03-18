@@ -88,10 +88,22 @@
               }
             }
           },
+          "AuthLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/music-api-dev-auth"
+            }
+          },
           "MusicDashapiLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
               "LogGroupName": "/aws/lambda/music-api-dev-music-api"
+            }
+          },
+          "LogPostLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/music-api-dev-logPost"
             }
           },
           "AddinglistLogGroup": {
@@ -174,6 +186,17 @@
                             "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/music-api-dev*:*:*"
                           }
                         ]
+                      },
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "sqs:ReceiveMessage",
+                          "sqs:DeleteMessage",
+                          "sqs:GetQueueAttributes"
+                        ],
+                        "Resource": [
+                          "arn:aws:sqs:us-east-1:466469553065:reporting"
+                        ]
                       }
                     ]
                   }
@@ -229,7 +252,19 @@
                         "Resource": [
                           {
                             "Fn::GetAtt": [
+                              "AuthLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
                               "MusicDashapiLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "LogPostLogGroup",
                               "Arn"
                             ]
                           },
@@ -265,6 +300,36 @@
               ]
             }
           },
+          "AuthLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/music-api.zip"
+              },
+              "Handler": "s_auth.handler",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "music-api-dev-auth",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "SERVERLESS_EXPRESS_PLATFORM": "aws"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "AuthLogGroup"
+            ]
+          },
           "MusicDashapiLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
@@ -272,7 +337,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/music-api/dev/1614845506999-2021-03-04T08:11:46.999Z/music-api.zip"
+                "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/music-api.zip"
               },
               "Handler": "s_music_api.handler",
               "Runtime": "nodejs12.x",
@@ -286,14 +351,43 @@
               },
               "Role": {
                 "Fn::GetAtt": [
-                  "contractors",
+                  "IamRoleLambdaExecution",
                   "Arn"
                 ]
               }
             },
             "DependsOn": [
-              "MusicDashapiLogGroup",
-              "contractors"
+              "MusicDashapiLogGroup"
+            ]
+          },
+          "LogPostLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/music-api.zip"
+              },
+              "Handler": "s_logPost.handler",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "music-api-dev-logPost",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "SERVERLESS_EXPRESS_PLATFORM": "aws"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "LogPostLogGroup"
             ]
           },
           "AddinglistLambdaFunction": {
@@ -303,7 +397,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/music-api/dev/1614845506999-2021-03-04T08:11:46.999Z/music-api.zip"
+                "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/music-api.zip"
               },
               "Handler": "s_addinglist.handler",
               "Runtime": "nodejs12.x",
@@ -334,7 +428,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/music-api/dev/1614845506999-2021-03-04T08:11:46.999Z/music-api.zip"
+                "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/music-api.zip"
               },
               "Handler": "s_getsonglist.handler",
               "Runtime": "nodejs12.x",
@@ -366,7 +460,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/music-api/dev/1614845506999-2021-03-04T08:11:46.999Z/music-api.zip"
+                "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/music-api.zip"
               },
               "Handler": "s_getsongName.handler",
               "Runtime": "nodejs12.x",
@@ -398,7 +492,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/music-api/dev/1614845506999-2021-03-04T08:11:46.999Z/music-api.zip"
+                "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/music-api.zip"
               },
               "Handler": "s_newplaylist.handler",
               "Runtime": "nodejs12.x",
@@ -423,54 +517,74 @@
               "NewplaylistLogGroup"
             ]
           },
-          "MusicDashapiLambdaVersionN0J7QmILlxB0EYQIPYzmBYmCXQEczuDqAzERzebEc": {
+          "AuthLambdaVersionCobwUuc47nCRDHfFATQqWTkit7s9mp4ed9KKYJQNI": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "AuthLambdaFunction"
+              },
+              "CodeSha256": "Nx6h2kTn78wk3e88duB5OjuhJFhGd7/+xFN5VDMgHo0="
+            }
+          },
+          "MusicDashapiLambdaVersion4iYOn9jx5nCMoUCvyTtLu6NPXVd9OdUbRV5GFQpIA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "MusicDashapiLambdaFunction"
               },
-              "CodeSha256": "In205jO3xx8PT8HqB4vLEh0JS2gaIwFEKuHHzQEkHkY="
+              "CodeSha256": "Nx6h2kTn78wk3e88duB5OjuhJFhGd7/+xFN5VDMgHo0="
             }
           },
-          "AddinglistLambdaVersionjlFNG8zlKmNGqOs8SvgbWB6s1wO7ztQEeUTi9xosWg": {
+          "LogPostLambdaVersionXFaZGYZqvzj0nCs0xsmvKG46irhreZVYs27vMewBkw": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "LogPostLambdaFunction"
+              },
+              "CodeSha256": "Nx6h2kTn78wk3e88duB5OjuhJFhGd7/+xFN5VDMgHo0="
+            }
+          },
+          "AddinglistLambdaVersionu4fCq57gSU7vuOuQ84yYfD7bfT8jY8QaVCgK97X9kk": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AddinglistLambdaFunction"
               },
-              "CodeSha256": "In205jO3xx8PT8HqB4vLEh0JS2gaIwFEKuHHzQEkHkY="
+              "CodeSha256": "Nx6h2kTn78wk3e88duB5OjuhJFhGd7/+xFN5VDMgHo0="
             }
           },
-          "GetsonglistLambdaVersionNZz2r7BaPIzsWPWVVbQaRJxKKYXVWo2YcKVYi9XsOc": {
+          "GetsonglistLambdaVersion2DHSuwHLaOO0xO9Pvsy9jUnKCltenEuKwy0gU8bs": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetsonglistLambdaFunction"
               },
-              "CodeSha256": "In205jO3xx8PT8HqB4vLEh0JS2gaIwFEKuHHzQEkHkY="
+              "CodeSha256": "Nx6h2kTn78wk3e88duB5OjuhJFhGd7/+xFN5VDMgHo0="
             }
           },
-          "GetsongNameLambdaVersion1z2eowwyJSnrQ95TnzZjt0mBGDAoDrUjAM9Jp65F4": {
+          "GetsongNameLambdaVersionsP28HUxRvOLO7u4x7hD8VlfIHjop0Z7jrRc3QJ4VdI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetsongNameLambdaFunction"
               },
-              "CodeSha256": "In205jO3xx8PT8HqB4vLEh0JS2gaIwFEKuHHzQEkHkY="
+              "CodeSha256": "Nx6h2kTn78wk3e88duB5OjuhJFhGd7/+xFN5VDMgHo0="
             }
           },
-          "NewplaylistLambdaVersionxLGZEBUXda4A54oEsuDJPLZs1NiKuTJExOp6J54sI": {
+          "NewplaylistLambdaVersionowKqKaoHQNK5r6xlw5ROSrHThsg5qxnc4rbJjR8mhs": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "NewplaylistLambdaFunction"
               },
-              "CodeSha256": "In205jO3xx8PT8HqB4vLEh0JS2gaIwFEKuHHzQEkHkY="
+              "CodeSha256": "Nx6h2kTn78wk3e88duB5OjuhJFhGd7/+xFN5VDMgHo0="
             }
           },
           "S3BucketMusicstoragecs493192711dev": {
@@ -730,10 +844,10 @@
               }
             }
           },
-          "ApiGatewayMethodProxyVarGet": {
+          "ApiGatewayMethodProxyVarAny": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
-              "HttpMethod": "GET",
+              "HttpMethod": "ANY",
               "RequestParameters": {},
               "ResourceId": {
                 "Ref": "ApiGatewayResourceProxyVar"
@@ -742,7 +856,10 @@
                 "Ref": "ApiGatewayRestApi"
               },
               "ApiKeyRequired": false,
-              "AuthorizationType": "NONE",
+              "AuthorizationType": "CUSTOM",
+              "AuthorizerId": {
+                "Ref": "AuthApiGatewayAuthorizer"
+              },
               "Integration": {
                 "IntegrationHttpMethod": "POST",
                 "Type": "AWS_PROXY",
@@ -771,7 +888,8 @@
                 }
               },
               "MethodResponses": []
-            }
+            },
+            "DependsOn": "AuthApiGatewayAuthorizer"
           },
           "ApiGatewayMethodAudioGet": {
             "Type": "AWS::ApiGateway::Method",
@@ -902,7 +1020,42 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1614845467233": {
+          "AuthApiGatewayAuthorizer": {
+            "Type": "AWS::ApiGateway::Authorizer",
+            "Properties": {
+              "AuthorizerResultTtlInSeconds": 300,
+              "IdentitySource": "method.request.header.authorization",
+              "Name": "auth",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "AuthorizerUri": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":apigateway:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":lambda:path/2015-03-31/functions/",
+                    {
+                      "Fn::GetAtt": [
+                        "AuthLambdaFunction",
+                        "Arn"
+                      ]
+                    },
+                    "/invocations"
+                  ]
+                ]
+              },
+              "Type": "TOKEN"
+            }
+          },
+          "ApiGatewayDeployment1616055797172": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -914,7 +1067,7 @@
               "ApiGatewayMethodAudioOptions",
               "ApiGatewayMethodSongnameOptions",
               "ApiGatewayMethodNewplaylistOptions",
-              "ApiGatewayMethodProxyVarGet",
+              "ApiGatewayMethodProxyVarAny",
               "ApiGatewayMethodAudioGet",
               "ApiGatewayMethodSongnameGet",
               "ApiGatewayMethodNewplaylistPost"
@@ -926,6 +1079,43 @@
               "FunctionName": {
                 "Fn::GetAtt": [
                   "MusicDashapiLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "AuthLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "AuthLambdaFunction",
                   "Arn"
                 ]
               },
@@ -1177,7 +1367,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/music-api/dev/1614845506999-2021-03-04T08:11:46.999Z/custom-resources.zip"
+                "S3Key": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z/custom-resources.zip"
               },
               "FunctionName": "music-api-dev-custom-resource-apigw-cw-role",
               "Handler": "apiGatewayCloudWatchRole/handler.handler",
@@ -1194,6 +1384,23 @@
             "DependsOn": [
               "IamRoleCustomResourcesLambdaExecution"
             ]
+          },
+          "LogPostEventSourceMappingSQSReporting": {
+            "Type": "AWS::Lambda::EventSourceMapping",
+            "DependsOn": [
+              "IamRoleLambdaExecution"
+            ],
+            "Properties": {
+              "BatchSize": 10,
+              "EventSourceArn": "arn:aws:sqs:us-east-1:466469553065:reporting",
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "LogPostLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Enabled": true
+            }
           },
           "contractors": {
             "Type": "AWS::IAM::Role",
@@ -1325,6 +1532,16 @@
               ]
             }
           },
+          "CloudWatchLogsSubscriptionFilterAuthLogGroup": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:9a4bcc85-3da5-456d-8b1d-2c3e95ccfec2#qvdr8XQN2DSBqCMGbM#music-api#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "AuthLogGroup"
+              }
+            }
+          },
           "CloudWatchLogsSubscriptionFilterMusicDashapiLogGroup": {
             "Type": "AWS::Logs::SubscriptionFilter",
             "Properties": {
@@ -1332,6 +1549,16 @@
               "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
               "LogGroupName": {
                 "Ref": "MusicDashapiLogGroup"
+              }
+            }
+          },
+          "CloudWatchLogsSubscriptionFilterLogPostLogGroup": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:9a4bcc85-3da5-456d-8b1d-2c3e95ccfec2#qvdr8XQN2DSBqCMGbM#music-api#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "LogPostLogGroup"
               }
             }
           },
@@ -1400,34 +1627,46 @@
               ]
             }
           },
+          "AuthLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "AuthLambdaVersionCobwUuc47nCRDHfFATQqWTkit7s9mp4ed9KKYJQNI"
+            }
+          },
           "MusicDashapiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "MusicDashapiLambdaVersionN0J7QmILlxB0EYQIPYzmBYmCXQEczuDqAzERzebEc"
+              "Ref": "MusicDashapiLambdaVersion4iYOn9jx5nCMoUCvyTtLu6NPXVd9OdUbRV5GFQpIA"
+            }
+          },
+          "LogPostLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "LogPostLambdaVersionXFaZGYZqvzj0nCs0xsmvKG46irhreZVYs27vMewBkw"
             }
           },
           "AddinglistLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AddinglistLambdaVersionjlFNG8zlKmNGqOs8SvgbWB6s1wO7ztQEeUTi9xosWg"
+              "Ref": "AddinglistLambdaVersionu4fCq57gSU7vuOuQ84yYfD7bfT8jY8QaVCgK97X9kk"
             }
           },
           "GetsonglistLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetsonglistLambdaVersionNZz2r7BaPIzsWPWVVbQaRJxKKYXVWo2YcKVYi9XsOc"
+              "Ref": "GetsonglistLambdaVersion2DHSuwHLaOO0xO9Pvsy9jUnKCltenEuKwy0gU8bs"
             }
           },
           "GetsongNameLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetsongNameLambdaVersion1z2eowwyJSnrQ95TnzZjt0mBGDAoDrUjAM9Jp65F4"
+              "Ref": "GetsongNameLambdaVersionsP28HUxRvOLO7u4x7hD8VlfIHjop0Z7jrRc3QJ4VdI"
             }
           },
           "NewplaylistLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "NewplaylistLambdaVersionxLGZEBUXda4A54oEsuDJPLZs1NiKuTJExOp6J54sI"
+              "Ref": "NewplaylistLambdaVersionowKqKaoHQNK5r6xlw5ROSrHThsg5qxnc4rbJjR8mhs"
             }
           },
           "ServiceEndpoint": {
@@ -1550,25 +1789,61 @@
     ],
     "pluginsData": {},
     "functions": {
+      "auth": {
+        "handler": "s_auth.handler",
+        "events": [],
+        "name": "music-api-dev-auth",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "AuthLambdaVersionCobwUuc47nCRDHfFATQqWTkit7s9mp4ed9KKYJQNI"
+      },
       "music-api": {
         "handler": "s_music_api.handler",
         "events": [
           {
             "http": {
+              "method": "any",
               "path": "{proxy+}",
-              "method": "get",
+              "cors": false,
+              "authorizer": {
+                "name": "auth",
+                "arn": {
+                  "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"AuthLambdaPermissionApiGateway\"][\"Properties\"][\"FunctionName\"]"
+                },
+                "managedExternally": false,
+                "resultTtlInSeconds": 300,
+                "identitySource": "method.request.header.authorization",
+                "claims": []
+              },
               "integration": "AWS_PROXY"
             }
           }
         ],
-        "role": "contractors",
         "name": "music-api-dev-music-api",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "MusicDashapiLambdaVersionN0J7QmILlxB0EYQIPYzmBYmCXQEczuDqAzERzebEc"
+        "versionLogicalId": "MusicDashapiLambdaVersion4iYOn9jx5nCMoUCvyTtLu6NPXVd9OdUbRV5GFQpIA"
+      },
+      "logPost": {
+        "handler": "s_logPost.handler",
+        "events": [
+          {
+            "sqs": "arn:aws:sqs:us-east-1:466469553065:reporting"
+          }
+        ],
+        "name": "music-api-dev-logPost",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "LogPostLambdaVersionXFaZGYZqvzj0nCs0xsmvKG46irhreZVYs27vMewBkw"
       },
       "addinglist": {
         "handler": "s_addinglist.handler",
@@ -1589,7 +1864,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "AddinglistLambdaVersionjlFNG8zlKmNGqOs8SvgbWB6s1wO7ztQEeUTi9xosWg"
+        "versionLogicalId": "AddinglistLambdaVersionu4fCq57gSU7vuOuQ84yYfD7bfT8jY8QaVCgK97X9kk"
       },
       "getsonglist": {
         "handler": "s_getsonglist.handler",
@@ -1631,7 +1906,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetsonglistLambdaVersionNZz2r7BaPIzsWPWVVbQaRJxKKYXVWo2YcKVYi9XsOc"
+        "versionLogicalId": "GetsonglistLambdaVersion2DHSuwHLaOO0xO9Pvsy9jUnKCltenEuKwy0gU8bs"
       },
       "getsongName": {
         "handler": "s_getsongName.handler",
@@ -1673,7 +1948,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetsongNameLambdaVersion1z2eowwyJSnrQ95TnzZjt0mBGDAoDrUjAM9Jp65F4"
+        "versionLogicalId": "GetsongNameLambdaVersionsP28HUxRvOLO7u4x7hD8VlfIHjop0Z7jrRc3QJ4VdI"
       },
       "newplaylist": {
         "handler": "s_newplaylist.handler",
@@ -1715,7 +1990,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "NewplaylistLambdaVersionxLGZEBUXda4A54oEsuDJPLZs1NiKuTJExOp6J54sI"
+        "versionLogicalId": "NewplaylistLambdaVersionowKqKaoHQNK5r6xlw5ROSrHThsg5qxnc4rbJjR8mhs"
       }
     },
     "resources": {
@@ -1911,7 +2186,7 @@
           "serverless_sdk/**"
         ],
         "artifact": "/Users/adriannaguevarra/Desktop/Winter 2021/CS493FirebaseAuth/.serverless/music-api.zip",
-        "artifactDirectoryName": "serverless/music-api/dev/1614845506999-2021-03-04T08:11:46.999Z"
+        "artifactDirectoryName": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -1927,7 +2202,7 @@
     "artifact": "/Users/adriannaguevarra/Desktop/Winter 2021/CS493FirebaseAuth/.serverless/music-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/music-api/dev/1614845506999-2021-03-04T08:11:46.999Z",
+    "artifactDirectoryName": "serverless/music-api/dev/1616055831692-2021-03-18T08:23:51.692Z",
     "artifact": "music-api.zip"
   }
 }
