@@ -72,7 +72,9 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json());
 
 app.get("/genres", function (req, res) {
+  const auth = req.get("authorization");
   const params = {
+    auth,
     TableName: MUSIC_TABLE,
     AttributesToGet: ["genre"],
   };
@@ -196,10 +198,10 @@ app.get("/song", function (req, res) {
 
 
 app.post("/play", (req, res) => {
-  const auth = req.get("authorization");
+
   const params = {
     MessageBody: JSON.stringify({
-      auth,
+ 
       artist: req.body.artist,
       album: req.body.album,
       song: req.body.song,
